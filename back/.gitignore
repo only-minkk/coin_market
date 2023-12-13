@@ -4,3 +4,4 @@ build
 src/yolo
 .env
 .env.production
+images

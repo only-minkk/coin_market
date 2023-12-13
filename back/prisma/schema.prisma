@@ -45,7 +45,7 @@ model Deal {
   imageUrl   String?         @map("image_url")
   createdAt  DateTime        @default(now()) @map("created_at")
   updatedAt  DateTime        @updatedAt @map("updated_at")
-  isActivate Int             @db.TinyInt
+  isActivate Int             @db.TinyInt @default(1) @map("is_activate")
   user       User            @relation(fields: [userId], references: [id])
   delivery   delivery?
   orderCoin  OrderCoin[]
@@ -74,7 +74,7 @@ model Coin {
   currencyType String      @map("currency_type")
   unitAmount   Float       @map("unit_amount") @db.Float
   isUsed       Boolean     @default(true) @map("is_used")
-  stockAmount  Int         @default(0)
+  stockAmount  Int         @default(0) @map("stock_amount")
   createdAt    DateTime    @default(now()) @map("created_at")
   updatedAt    DateTime    @updatedAt @map("updated_at")
   country      Country     @relation(fields: [countryId], references: [id])
@@ -177,7 +177,7 @@ model SnsLogin {
   userId    String @unique @map("user_id")
   snsType   String @map("sns_type")
   snsName   String @map("sns_name")
-  sns_email String @unique
+  snsEmail String @unique @map("sns_email")
   user      User   @relation(fields: [userId], references: [id])
 
   @@index([userId], map: "sns_login_user_id_fkey")

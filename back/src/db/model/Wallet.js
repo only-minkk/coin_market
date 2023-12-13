@@ -1,4 +1,3 @@
-import { v4 } from "uuid";
 import { db } from "../db";
 
 class Wallet {
@@ -15,7 +14,6 @@ class Wallet {
   }
 
   static async letChanges(data) {
-    data.id = v4();
     const wallet = db.wallet.create({
       data,
     });

@@ -1,11 +1,11 @@
 import bcrypt from "bcrypt";
 import { db } from "../db";
-import { v4 } from "uuid";
+import { nextTick } from "process";
+import { Prisma } from "@prisma/client";
 
 class User {
   static async createUserByEmailAndPassword(data) {
     data.password = bcrypt.hashSync(data.password, 12);
-    data.id = v4();
 
     data.wallet = {};
     data.wallet.create = { krwAmount: 0, statement: "회원가입" };

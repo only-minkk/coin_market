@@ -1,5 +1,4 @@
 import { db } from "../db";
-import { v4 } from "uuid";
 
 class Buy {
   static async CountryIdByCountryCode(countryCode) {

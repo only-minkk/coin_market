@@ -1,9 +1,9 @@
 import { db } from "../db";
-import { v4 } from "uuid";
 
+//todo 로그아웃하면 토큰 DB에서 삭제해야하나?
+//todo DB에 토큰을 저장해놓는게 좋나?
 class Token {
   static async createdTokenDb(data) {
-    data.id = v4();
     const token = db.userToken.create({
       data,
     });

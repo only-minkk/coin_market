@@ -1,7 +1,7 @@
 {
   "name": "cafe-server",
   "version": "1.0.0",
-  "description": "이 프로젝트는 자기자신의 포트폴리오를 작성하고, 또한 다른 사람의 포트폴리오를 확인할 수 있는 웹 서비스입니다. 제시된 기본 기능 구현 후 팀원들과 의논 결과 결정한 기능들을 추가, 개선하였습니다.",
+  "description": "",
   "main": "index.js",
   "scripts": {
     "start": "nodemon index.js --exec babel-node",
@@ -40,8 +40,7 @@
     "request-promise-native": "^1.0.9",
     "sendmail": "^1.6.1",
     "spawn-args": "^0.2.0",
-    "supertest": "^6.1.6",
-    "uuid": "^8.3.2"
+    "supertest": "^6.1.6"
   },
   "devDependencies": {
     "@babel/cli": "^7.19.3",

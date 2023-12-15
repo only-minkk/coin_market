@@ -168,16 +168,23 @@ class buyService {
     for (let i in addSellerPoint) {
       addSellerPoint[i] = Math.floor(addSellerPoint[i]);
     }
-    let order = await Buy.createDeal(
-      data["userId"],
-      orderData["dealStatus"],
-      orderData["imageUrl"],
-      orderData["isActivate"],
+
+    const userId = data["userId"];
+    const dealStatus = orderData["dealStatus"];
+    const imageUrl = orderData["imageUrl"];
+    const isActivate = orderData["isActivate"];
+
+    const dataToCreate = {
+      userId,
+      dealStatus,
+      imageUrl,
+      isActivate,
       delivery,
       createOrderCoinList,
       updateDealCoinList,
-      addSellerPoint
-    );
+      addSellerPoint,
+    };
+    let order = await Buy.createDeal(dataToCreate);
     return "구매가 완료 되었습니다 : " + order[0]["id"];
   }
 }

@@ -102,16 +102,17 @@ class Buy {
     });
   }
 
-  static async createDeal(
-    userId,
-    dealStatus,
-    imageUrl,
-    isActivate,
-    delivery,
-    createOrderCoinList,
-    updateDealCoinList,
-    addSellerPoint
-  ) {
+  static async createDeal(dataToCreate) {
+    const {
+      userId,
+      dealStatus,
+      imageUrl,
+      isActivate,
+      delivery,
+      createOrderCoinList,
+      updateDealCoinList,
+      addSellerPoint,
+    } = dataToCreate;
     let orderTransactionList = [];
     const createDeal = db.deal.create({
       data: {

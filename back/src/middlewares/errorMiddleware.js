@@ -9,8 +9,6 @@ function errorMiddleware(error, req, res, next) {
       console.log("{constraint}에서 고유한 제약 조건이 실패했습니다.");
 
       if (error.message.includes("email")) {
-        // console.log("email에러");
-        // throw new Error("email이 중복되었습니다.");
         const error = "email이 중복되었습니다.";
 
         console.log("\x1b[33m%s\x1b[0m", "email이 중복되었습니다.");

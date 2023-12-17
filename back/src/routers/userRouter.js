@@ -9,10 +9,13 @@ const userAuthRouter = Router();
 //회원가입
 userAuthRouter.post("/users/register", async (req, res, next) => {
   try {
-    const data = req.body;
-    const user = await userService.createUser(data);
+    const userData = req.body;
 
-    res.status(201).json(user);
+    //Todo validation
+
+    // 회원가입
+    const createdUser = await userService.registerUser(userData);
+    res.status(201).json(createdUser);
   } catch (err) {
     next(err);
   }

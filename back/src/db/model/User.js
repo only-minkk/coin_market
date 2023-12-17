@@ -2,15 +2,20 @@ import bcrypt from "bcrypt";
 import { db } from "../db";
 
 class User {
-  static async createUserByEmailAndPassword(data) {
-    data.password = bcrypt.hashSync(data.password, 12);
+  static async createUser(userData) {
+    // 유저의 지갑 데이터 생성
+    userData.wallet = { create: { krwAmount: 0, statement: "회원가입" } };
 
-    data.wallet = {};
-    data.wallet.create = { krwAmount: 0, statement: "회원가입" };
-    const newUser = db.user.create({
-      data,
+    // 유저 생성
+    const createdUser = db.user.create({
+      data: userData,
+      select: {
+        email: true,
+        userName: true,
+      },
     });
-    return newUser;
+
+    return createdUser;
   }
 
   static async findUserByEmail(email) {

@@ -4,19 +4,19 @@ import { tokenService } from "./tokenService";
 
 class userService {
   //회원가입
-  static async createUser(data) {
-    const email = data.email;
+  static async registerUser(userData) {
+    // 유저 존재 여부 확인
+    const duplicateUser = await User.findUserByEmail(userData.email);
+    if (duplicateUser) {
+      throw new Error("이미 존재하는 이메일입니다.");
+    }
 
-    // const user = await User.findUserByEmail(email);
-    // if (user) {
-    //   throw new Error("이미 존재하는 이메일입니다.");
-    // }
+    // 유저 비밀번호 해싱
+    userData.password = bcrypt.hashSync(userData.password, 12);
 
-    const newUser = await User.createUserByEmailAndPassword(data);
-
-    delete newUser.password;
-
-    return newUser;
+    // 유저 생성
+    const createdUser = await User.createUser(userData);
+    return createdUser;
   }
 
   //로그인

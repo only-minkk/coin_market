@@ -6,7 +6,7 @@ class userService {
   //회원가입
   static async registerUser(userData) {
     // 유저 존재 여부 확인
-    const duplicateUser = await User.findUserByEmail(userData.email);
+    const duplicateUser = await User.checkUserExistsByEmail(userData.email);
     if (duplicateUser) {
       throw new Error("이미 존재하는 이메일입니다.");
     }

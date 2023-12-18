@@ -18,10 +18,27 @@ class User {
     return createdUser;
   }
 
+  static async checkUserExistsByEmail(email) {
+    const userExists = db.user.findUnique({
+      where: {
+        email,
+      },
+      select: {
+        email: true,
+      },
+    });
+    return userExists;
+  }
+
   static async findUserByEmail(email) {
     const user = db.user.findUnique({
       where: {
         email,
+      },
+      select: {
+        email: true,
+        password: true,
+        role: true,
       },
     });
     return user;

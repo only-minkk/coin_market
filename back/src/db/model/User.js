@@ -37,6 +37,7 @@ class User {
       },
       select: {
         email: true,
+        id: true,
         password: true,
         role: true,
       },

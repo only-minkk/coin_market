@@ -112,8 +112,8 @@ class userService {
   }
 
   //비밀번호 검증
-  static async verificationPassword(id, password) {
-    const user = await User.findUserById(id);
+  static async verificationPassword(email, password) {
+    const user = await User.checkUserPwByEmail(email);
 
     const correctPassword = user.password;
     const isPasswordRight = await bcrypt.compare(password, correctPassword);

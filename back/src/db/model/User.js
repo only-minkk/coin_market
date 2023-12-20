@@ -45,6 +45,18 @@ class User {
     return user;
   }
 
+  static async checkUserPwByEmail(email) {
+    const userPw = db.user.findUnique({
+      where: {
+        email,
+      },
+      select: {
+        password: true,
+      },
+    });
+    return userPw;
+  }
+
   static async findUserById(id) {
     const user = db.user.findUnique({
       where: {

@@ -64,10 +64,7 @@ userAuthRouter.post(
   async (req, res, next) => {
     try {
       //Todo 비밀번호검증필요 공백넘어옴
-      const user = await userService.verificationPassword(
-        req.userId,
-        req.body.password
-      );
+      await userService.verificationPassword(req.userId, req.body.password);
 
       res.status(200).send("success");
     } catch (err) {
@@ -103,7 +100,7 @@ userAuthRouter.put(
     try {
       const withdrawal = { role: "withdrawal" };
       const id = req.userId;
-      const user = await userService.userUpdate({ id, withdrawal });
+      await userService.userUpdate({ id, withdrawal });
 
       res.status(204).send("회원탈퇴 신청이 완료되었습니다.");
     } catch (err) {
@@ -128,7 +125,7 @@ userAuthRouter.post(
     const randomNumber = generateRandom(111111, 999999);
 
     try {
-      const sendMail = await mailAuthService.sendMail({ email, randomNumber });
+      await mailAuthService.sendMail({ email, randomNumber });
 
       res.status(200).json(randomNumber);
     } catch (err) {
@@ -143,7 +140,7 @@ userAuthRouter.put(
   loginRequired,
   async (req, res, next) => {
     try {
-      const authMail = await userService.authMailUpdate(req.userId);
+      await userService.authMailUpdate(req.userId);
       res.status(201).send("메일인증이 완료되었습니다.");
     } catch (err) {
       next(err);

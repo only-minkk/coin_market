@@ -113,14 +113,14 @@ class userService {
 
   //비밀번호 검증
   static async verificationPassword(id, password) {
-    const user = await User.findUserById(id);
+    const user = await User.checkUserPwById(id);
 
     const correctPassword = user.password;
     const isPasswordRight = await bcrypt.compare(password, correctPassword);
     if (!isPasswordRight) {
       throw new Error("비밀번호가 틀렸습니다.");
     }
-    return console.log("ok");
+    return user;
   }
 
   //비밀번호 변경

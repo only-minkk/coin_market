@@ -51,7 +51,6 @@ function UserInfo() {
   const handlePwChangeClick = async () => {
     try {
       const response = await Api.post('users/pass/vrfct', {
-        email: email,
         password: passWord.currentPw,
       });
       await changePassWord();

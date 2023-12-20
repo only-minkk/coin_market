@@ -61,11 +61,9 @@ userAuthRouter.post(
   loginRequired,
   async (req, res, next) => {
     try {
-      //TODO 비밀번호 검증 필요 빈값도 넘어옴
-      const user = await userService.verificationPassword(
-        req.body.email,
-        req.body.password
-      );
+      const id = req.userId;
+      const password = req.body.password;
+      const user = await userService.verificationPassword(id, password);
 
       res.status(200).send("success");
     } catch (err) {

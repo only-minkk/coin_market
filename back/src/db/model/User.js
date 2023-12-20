@@ -54,6 +54,18 @@ class User {
     return user;
   }
 
+  static async checkUserPwById(id) {
+    const userPw = db.user.findUnique({
+      where: {
+        id,
+      },
+      select: {
+        password: true,
+      },
+    });
+    return userPw;
+  }
+
   static async updateUser({ id, userName, phoneNumber }) {
     const user = db.user.update({
       where: {

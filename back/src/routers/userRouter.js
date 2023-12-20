@@ -61,9 +61,11 @@ userAuthRouter.post(
   loginRequired,
   async (req, res, next) => {
     try {
-      const id = req.userId;
-      const password = req.body.password;
-      const user = await userService.verificationPassword(id, password);
+      //Todo 비밀번호검증필요 공백넘어옴
+      const user = await userService.verificationPassword(
+        req.userId,
+        req.body.password
+      );
 
       res.status(200).send("success");
     } catch (err) {
@@ -78,10 +80,11 @@ userAuthRouter.put(
   loginRequired,
   async (req, res, next) => {
     try {
-      const id = req.userId;
-      const password = req.body.password;
-
-      const user = await userService.updatePassword(id, password);
+      //Todo 비밀번호검증필요 공백넘어옴
+      const user = await userService.updatePassword(
+        req.userId,
+        req.body.password
+      );
 
       res.status(201).json(user);
     } catch (err) {

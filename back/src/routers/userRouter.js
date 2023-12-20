@@ -47,7 +47,9 @@ userAuthRouter.get("/users", loginRequired, async (req, res, next) => {
 //회원정보수정
 userAuthRouter.put("/users", loginRequired, async (req, res, next) => {
   try {
-    const user = await userService.userUpdate(req.userId, req.body);
+    const id = req.userId;
+    const toUpdateData = req.body;
+    const user = await userService.userUpdate({ id, toUpdateData });
 
     res.status(201).json(user);
   } catch (err) {
@@ -99,8 +101,9 @@ userAuthRouter.put(
   loginRequired,
   async (req, res, next) => {
     try {
-      const body = { role: "withdrawal" };
-      const user = await userService.userUpdate(req.userId, body);
+      const withdrawal = { role: "withdrawal" };
+      const id = req.userId;
+      const user = await userService.userUpdate({ id, withdrawal });
 
       res.status(204).send("회원탈퇴 신청이 완료되었습니다.");
     } catch (err) {

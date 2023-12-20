@@ -83,25 +83,24 @@ class userService {
   }
 
   //회원정보수정 , 회원탈퇴
-  static async userUpdate(id, body) {
+  static async userUpdate({ id, toUpdateData, withdrawal }) {
     const user = await User.findUserById(id);
     if (!user) {
       throw new Error("해당 유저가 존재하지 않습니다.");
     }
 
-    if (!body.role) {
-      const userName = body.userName;
-      const phoneNumber = body.phoneNumber;
+    if (toUpdateData) {
+      const userName = toUpdateData.userName;
+      const phoneNumber = toUpdateData.phoneNumber;
       const updatedUser = await User.updateUser({
         id,
         userName,
         phoneNumber,
       });
       delete updatedUser.password;
-
       return updatedUser;
     } else {
-      const role = body.role;
+      const role = withdrawal.role;
       const withdrawalUser = await User.withdrawalUser({
         id,
         role,

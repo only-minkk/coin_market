@@ -124,7 +124,8 @@ class userService {
 
   //비밀번호 변경
   static async updatePassword(id, password) {
-    const user = await User.updatePassword({ id, password });
+    const newPassword = bcrypt.hashSync(password, 12);
+    const user = await User.updatePassword({ id, newPassword });
 
     delete user.password;
 

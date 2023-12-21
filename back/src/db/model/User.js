@@ -79,14 +79,13 @@ class User {
     return user;
   }
 
-  static async updatePassword({ id, password }) {
-    password = bcrypt.hashSync(password, 12);
+  static async updatePassword({ id, newPassword }) {
     const user = db.user.update({
       where: {
         id,
       },
       data: {
-        password,
+        password: newPassword,
       },
     });
 

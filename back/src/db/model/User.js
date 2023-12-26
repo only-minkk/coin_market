@@ -75,6 +75,11 @@ class User {
         userName,
         phoneNumber,
       },
+      select: {
+        email: true,
+        userName: true,
+        phoneNumber: true,
+      },
     });
     return user;
   }
@@ -87,8 +92,10 @@ class User {
       data: {
         password: newPassword,
       },
+      select: {
+        email: true,
+      },
     });
-
     return user;
   }
 
@@ -99,6 +106,10 @@ class User {
       },
       data: {
         role,
+      },
+      select: {
+        email: true,
+        role: true,
       },
     });
     return user;

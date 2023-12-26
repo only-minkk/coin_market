@@ -97,7 +97,6 @@ class userService {
         userName,
         phoneNumber,
       });
-      delete updatedUser.password;
       return updatedUser;
     } else {
       const role = withdrawal.role;
@@ -126,9 +125,6 @@ class userService {
   static async updatePassword(id, password) {
     const newPassword = bcrypt.hashSync(password, 12);
     const user = await User.updatePassword({ id, newPassword });
-
-    delete user.password;
-
     return user;
   }
 

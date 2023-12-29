@@ -20,6 +20,7 @@ walletRouter.get("/users/wallet", loginRequired, async (req, res, next) => {
   }
 });
 
+// 환전 신청
 walletRouter.post("/users/wallet", loginRequired, async (req, res, next) => {
   try {
     const wallet = await walletService.checkChanges(req.userId);

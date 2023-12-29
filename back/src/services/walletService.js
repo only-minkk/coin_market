@@ -1,7 +1,7 @@
 import { Wallet } from "../db/model/Wallet";
 
 class walletService {
-  //잔액 조회
+  //포인트 내역 조회
   static async checkChanges(userId) {
     const changes = await Wallet.findWalletByUserId(userId);
 
